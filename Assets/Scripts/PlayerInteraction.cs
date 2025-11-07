@@ -34,67 +34,73 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (transferTimer < transferInterval)
+        if (transferTimer < transferInterval) return;
+
+        string tag = other.tag;
+
+        // --- 5. ÇÖP KUTUSU ---
+        // (Bunu en baþa koymak daha verimli olabilir)
+        if (tag == "TrashDepot")
         {
-            return;
+            if (!playerStack.IsEmpty)
+            {
+                GameObject itemToTrash = playerStack.RemoveItem();
+                if (itemToTrash != null)
+                {
+                    Destroy(itemToTrash); // 
+                    transferTimer = 0f;
+                }
+                return; // Çöp kutusundayken baþka bir þey yapma
+            }
         }
 
-        // Girdiðimiz alanda bir GridDepot var mý?
+        // Depo gerektiren diðer etkileþimler
         if (other.TryGetComponent<GridDepot>(out GridDepot depot))
         {
-            string tag = other.tag;
+            // 1. SPANWER'DAN ALMA
             if (tag == "SpawnerDepot")
             {
-                // Sadece sýrtýmýz boþsa VEYA zaten Kiremit taþýyorsak al
                 if (!playerStack.IsFull && !depot.IsEmpty && (heldItemType == 0 || heldItemType == 1))
                 {
                     GameObject item = depot.RemoveItem();
                     if (item != null)
                     {
                         playerStack.AddItem(item);
-                        heldItemType = 1; // Artýk Kiremit taþýyoruz
+                        heldItemType = 1;
                         transferTimer = 0f;
                     }
                 }
             }
-
+            // 2. TRANSFORMER GÝRÝÞÝNE BIRAKMA
             else if (tag == "InputDepot")
             {
-                // Sadece Kiremit taþýyorsak ve depo dolu deðilse
                 if (!playerStack.IsEmpty && !depot.IsFull && heldItemType == 1)
                 {
                     GameObject item = playerStack.RemoveItem();
-                    if (item != null)
-                    {
-                        depot.AddItem(item);
-                        transferTimer = 0f;
-                    }
+                    if (item != null) { depot.AddItem(item); transferTimer = 0f; }
                 }
             }
+            // 3. TRANSFORMER ÇIKIÞINDAN ALMA
             else if (tag == "OutputDepot")
             {
-                // Sadece sýrtýmýz boþsa VEYA zaten Çatý Kiremiti taþýyorsak
                 if (!playerStack.IsFull && !depot.IsEmpty && (heldItemType == 0 || heldItemType == 2))
                 {
                     GameObject item = depot.RemoveItem();
                     if (item != null)
                     {
                         playerStack.AddItem(item);
-                        heldItemType = 2; // Artýk Çatý Kiremiti taþýyoruz
+                        heldItemType = 2;
                         transferTimer = 0f;
                     }
                 }
             }
+            // 4. KAMYONA BIRAKMA
             else if (tag == "TruckDepot")
             {
                 if (!playerStack.IsEmpty && !depot.IsFull && heldItemType == 2)
                 {
                     GameObject item = playerStack.RemoveItem();
-                    if (item != null)
-                    {
-                        depot.AddItem(item);
-                        transferTimer = 0f;
-                    }
+                    if (item != null) { depot.AddItem(item); transferTimer = 0f; }
                 }
             }
         }

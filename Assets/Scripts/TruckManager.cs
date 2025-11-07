@@ -46,7 +46,7 @@ public class TruckManager : MonoBehaviour
         // 1. Para kazan
         int itemsSold = currentTruckDepot.CurrentItemCount;
         int moneyEarned = itemsSold * pricePerItem;
-        Debug.Log($"KAMYON DOLDU! {itemsSold} item satýldý. Kazanýlan para: {moneyEarned}");
+        MoneyManager.Instance.AddMoney(moneyEarned);
 
         // 2. Dolu kamyonu gönder (Despawn)
         GameObject oldTruck = currentTruckDepot.transform.parent.gameObject; // GridDepot'un parent'ý kamyondur

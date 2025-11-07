@@ -48,7 +48,7 @@ MonoBehaviour:
   depotParent: {fileID: 1220557177847459719}
   columns: 5
   rows: 5
-  maxLayers: 4
+  maxLayers: 1
   itemPrefabForMeasuring: {fileID: 5777677295481886125, guid: 84a1d1a9eb7c02a41a1ac87c5778bea1,
     type: 3}
 --- !u!65 &5368993496935443299

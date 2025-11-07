@@ -10,7 +10,7 @@ public class AIWorker : MonoBehaviour
 
     private Transform spawnerDepotLocation;
     private Transform transformerInputLocation;
-
+    private CharacterAudio myAudio;
     private enum AiState { GettingItem, DeliveringItem }
     private AiState currentState = AiState.GettingItem;
 
@@ -27,6 +27,7 @@ public class AIWorker : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         stack = GetComponent<PlayerStack>();
         animator = GetComponent<Animator>();
+        myAudio = GetComponent<CharacterAudio>();
     }
 
     private void Start()
@@ -102,8 +103,10 @@ public class AIWorker : MonoBehaviour
                 if (!spawnerDepot.IsEmpty)
                 {
                     GameObject item = spawnerDepot.RemoveItem();
+                    myAudio.PlayPickupSound();
                     if (item != null)
                     {
+                        myAudio.PlayPickupSound();
                         stack.AddItem(item);
                         transferTimer = 0f;
                     }
@@ -118,8 +121,10 @@ public class AIWorker : MonoBehaviour
                 if (!inputDepot.IsFull)
                 {
                     GameObject item = stack.RemoveItem();
+                    myAudio.PlayPickupSound();
                     if (item != null)
                     {
+                        myAudio.PlayPickupSound();
                         inputDepot.AddItem(item);
                         transferTimer = 0f;
                     }

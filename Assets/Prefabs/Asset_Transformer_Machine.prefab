@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8941452812983211860}
-  - component: {fileID: 4586862119571067275}
   - component: {fileID: 2022096845790031888}
   m_Layer: 0
   m_Name: Asset_Transformer_Machine
@@ -38,27 +37,6 @@ Transform:
   - {fileID: 4776334247858877004}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 90.758}
---- !u!95 &4586862119571067275
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1166793621998111992}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 42902c55c1da63e48b87f7a3c7f46727, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2022096845790031888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outputPrefab: {fileID: 5777677295481886125, guid: 84a1d1a9eb7c02a41a1ac87c5778bea1,
     type: 3}
-  processingTime: 1
+  processingTime: 0.5
   inputDepot: {fileID: 875723929917039868}
   outputDepot: {fileID: 8222134524529500995}
 --- !u!1 &3180464610993423189
@@ -89,7 +67,7 @@ GameObject:
   - component: {fileID: 2075399942043914083}
   m_Layer: 0
   m_Name: "Ins\u0131deDepot"
-  m_TagString: Untagged
+  m_TagString: InputDepot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,13 +80,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3180464610993423189}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.2, y: 0, z: -0.321}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -3.2, y: 0, z: -0.247}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8941452812983211860}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &875723929917039868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,10 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04fd995c1ef21a448abda15834a2e0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depotParent: {fileID: 0}
+  depotParent: {fileID: 2119136914212637766}
   columns: 2
   rows: 3
   maxLayers: 10
+  itemPrefabForMeasuring: {fileID: 7464615714625938568, guid: f6c657e2da9cf0b4094d8aa141fdec0d,
+    type: 3}
 --- !u!65 &2075399942043914083
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -144,8 +124,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.1501355, y: 2.1107213, z: 1}
-  m_Center: {x: 0.15885162, y: 0.002440095, z: -6.920266e-18}
+  m_Size: {x: 2.1501355, y: 2.1107213, z: 1.9643486}
+  m_Center: {x: 0.15885165, y: 0.0024400945, z: -0.038480293}
 --- !u!1 &3460674537760642051
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +290,7 @@ GameObject:
   - component: {fileID: 3597129698056746229}
   m_Layer: 0
   m_Name: InSide
-  m_TagString: InputDepot
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -407,6 +387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 971530016183517067}
+  - component: {fileID: 7547940096533561228}
   m_Layer: 0
   m_Name: Bone
   m_TagString: Untagged
@@ -430,6 +411,27 @@ Transform:
   - {fileID: 8472417002270746689}
   m_Father: {fileID: 8941452812983211860}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &7547940096533561228
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618981617749186494}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 42902c55c1da63e48b87f7a3c7f46727, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7852797824561687333
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +547,7 @@ GameObject:
   - component: {fileID: 853103693205613869}
   m_Layer: 0
   m_Name: OutsideDepot
-  m_TagString: Untagged
+  m_TagString: OutputDepot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -558,13 +560,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7882551879347539519}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.054, y: -3.316, z: -0.321}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.054, y: -3.316, z: -0.658}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8941452812983211860}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &8222134524529500995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,10 +579,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04fd995c1ef21a448abda15834a2e0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depotParent: {fileID: 0}
+  depotParent: {fileID: 4776334247858877004}
   columns: 2
   rows: 3
   maxLayers: 10
+  itemPrefabForMeasuring: {fileID: 5777677295481886125, guid: 84a1d1a9eb7c02a41a1ac87c5778bea1,
+    type: 3}
 --- !u!65 &853103693205613869
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -600,8 +604,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.3749745, y: 2.1937652, z: 1.474307}
-  m_Center: {x: 0.10912871, y: -0.0123461485, z: 0.2371535}
+  m_Size: {x: 2.3749745, y: 2.1937652, z: 1.9179459}
+  m_Center: {x: 0.10912874, y: -0.012346146, z: 0.015333748}
 --- !u!1 &8570904629753501470
 GameObject:
   m_ObjectHideFlags: 0

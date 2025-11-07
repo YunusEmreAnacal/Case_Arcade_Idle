@@ -7,7 +7,7 @@ public class PlayerInteraction : MonoBehaviour
     [Header("Etkileþim Ayarlarý")]
     [SerializeField]
     private float transferInterval = 0.1f;
-
+    private CharacterAudio myAudio;
     private PlayerStack playerStack;
     private float transferTimer = 0f;
 
@@ -16,6 +16,7 @@ public class PlayerInteraction : MonoBehaviour
     private void Awake()
     {
         playerStack = GetComponent<PlayerStack>();
+        myAudio = GetComponent<CharacterAudio>();
     }
 
     private void Update()
@@ -39,18 +40,18 @@ public class PlayerInteraction : MonoBehaviour
         string tag = other.tag;
 
         // --- 5. ÇÖP KUTUSU ---
-        // (Bunu en baþa koymak daha verimli olabilir)
         if (tag == "TrashDepot")
         {
             if (!playerStack.IsEmpty)
             {
                 GameObject itemToTrash = playerStack.RemoveItem();
+                myAudio.PlayPickupSound();
                 if (itemToTrash != null)
                 {
-                    Destroy(itemToTrash); // 
+                    Destroy(itemToTrash);  
                     transferTimer = 0f;
                 }
-                return; // Çöp kutusundayken baþka bir þey yapma
+                return;
             }
         }
 
@@ -63,6 +64,7 @@ public class PlayerInteraction : MonoBehaviour
                 if (!playerStack.IsFull && !depot.IsEmpty && (heldItemType == 0 || heldItemType == 1))
                 {
                     GameObject item = depot.RemoveItem();
+                    myAudio.PlayPickupSound();
                     if (item != null)
                     {
                         playerStack.AddItem(item);
@@ -77,6 +79,7 @@ public class PlayerInteraction : MonoBehaviour
                 if (!playerStack.IsEmpty && !depot.IsFull && heldItemType == 1)
                 {
                     GameObject item = playerStack.RemoveItem();
+                    myAudio.PlayPickupSound();
                     if (item != null) { depot.AddItem(item); transferTimer = 0f; }
                 }
             }
@@ -86,9 +89,11 @@ public class PlayerInteraction : MonoBehaviour
                 if (!playerStack.IsFull && !depot.IsEmpty && (heldItemType == 0 || heldItemType == 2))
                 {
                     GameObject item = depot.RemoveItem();
+                    myAudio.PlayPickupSound();
                     if (item != null)
                     {
                         playerStack.AddItem(item);
+                        myAudio.PlayPickupSound();
                         heldItemType = 2;
                         transferTimer = 0f;
                     }
@@ -100,6 +105,7 @@ public class PlayerInteraction : MonoBehaviour
                 if (!playerStack.IsEmpty && !depot.IsFull && heldItemType == 2)
                 {
                     GameObject item = playerStack.RemoveItem();
+                    myAudio.PlayPickupSound();
                     if (item != null) { depot.AddItem(item); transferTimer = 0f; }
                 }
             }

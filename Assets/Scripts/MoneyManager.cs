@@ -50,7 +50,6 @@ public class MoneyManager : MonoBehaviour
         }
         else
         {
-            // Para yetersiz
             return false;
         }
     }

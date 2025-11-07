@@ -23,7 +23,7 @@ public class MoneyDisplayUI : MonoBehaviour
         }
         else
         {
-            Debug.LogError("MoneyDisplayUI, MoneyManager.Instance'ý bulamadý! 'Managers' objesinin sahnede olduðundan emin ol.");
+            Debug.LogError("MoneyDisplayUI, MoneyManager.Instance'ý bulamadý!");
         }
     }
 

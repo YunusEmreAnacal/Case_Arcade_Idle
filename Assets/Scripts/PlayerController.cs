@@ -1,17 +1,17 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // Input System için gerekli
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Hareket Ayarlarý")]
-    public float moveSpeed = 6f; // Karakterin hareket hýzý
-    public float rotationSpeed = 15f; // Karakterin dönüþ hýzý
+    public float moveSpeed = 6f; 
+    public float rotationSpeed = 15f; 
 
     [Header("UI Referanslarý")]
-    public Canvas canvas; // UI Canvas'ý
-    public RectTransform joystickBase; // Joystick'in dýþ dairesi
-    public RectTransform joystickKnob; // Joystick'in iç kolu
-    public float joystickRadius = 125f; // Joystick'in maksimum hareket alaný (Base boyutunun yarýsý)
+    public Canvas canvas; 
+    public RectTransform joystickBase; 
+    public RectTransform joystickKnob; 
+    public float joystickRadius = 125f; 
 
     private CharacterController controller;
     private Vector2 touchStartPosition;
@@ -28,26 +28,22 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         mainCamera = Camera.main;
 
-        // --- Animasyon ---
         animator = GetComponent<Animator>();
         if (animator == null)
         {
             Debug.LogError("Player nesnesinde Animator bileþeni bulunamadý!");
         }
         animSpeedID = Animator.StringToHash("Speed");
-        // ------------------
 
         joystickBase.gameObject.SetActive(false);
     }
 
-    // ##### BU METODU GÜNCELLEYÝN #####
     void Update()
     {
         bool touchStarted = false;
         bool touchEnded = false;
         Vector2 currentPosition = Vector2.zero;
 
-        // --- Platforma Özel Giriþ (Input) Okuma ---
 
 #if UNITY_EDITOR
         // ==== EDÝTÖR ÝÇÝN MOUSE (FARE) KONTROLÜ ====
@@ -64,7 +60,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 #else
-        // ==== MOBÝL CÝHAZ ÝÇÝN DOKUNMATÝK KONTROLÜ ====
         if (Touchscreen.current != null && Touchscreen.current.primaryTouch.isInContact)
         {
             currentPosition = Touchscreen.current.primaryTouch.position.ReadValue();

@@ -19,7 +19,8 @@ public class GridDepot : MonoBehaviour
     [Header("Ölçüm Referansý")]
     [Tooltip("Bu depoda saklanacak item'ýn PREFAB'ý. Boyutlar buna göre hesaplanacak.")]
     [SerializeField]
-    private GameObject itemPrefabForMeasuring; // YENÝ EKLENDÝ
+    private GameObject itemPrefabForMeasuring;
+
 
     // --- Dahili Deðiþkenler ---
     private Stack<GameObject> storedItems = new Stack<GameObject>();
@@ -58,6 +59,7 @@ public class GridDepot : MonoBehaviour
         item.transform.localRotation = Quaternion.identity;
 
         storedItems.Push(item);
+
         return true;
     }
 
@@ -71,7 +73,7 @@ public class GridDepot : MonoBehaviour
         return itemToRemove;
     }
 
-    private void MeasureAndCalculateSlots() // Parametre kaldýrýldý
+    private void MeasureAndCalculateSlots() 
     {
         if (itemPrefabForMeasuring == null)
         {

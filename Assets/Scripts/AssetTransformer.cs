@@ -13,10 +13,10 @@ public class AssetTransformer : MonoBehaviour
 
     [Header("Depo Referanslarý")]
     [SerializeField]
-    private GridDepot inputDepot; // GÝRÝÞ deposu (Kiremitlerin býrakýlacaðý yer)
+    private GridDepot inputDepot; // GÝRÝÞ deposu
 
     [SerializeField]
-    private GridDepot outputDepot; // ÇIKIÞ deposu (Çatý kiremitlerinin oluþacaðý yer)
+    private GridDepot outputDepot; // ÇIKIÞ deposu 
 
     private void Start()
     {

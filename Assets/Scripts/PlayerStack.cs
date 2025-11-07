@@ -13,7 +13,7 @@ public class PlayerStack : MonoBehaviour
     [Header("Ölçüm Referansý")]
     [Tooltip("Sýrtta taþýnacak item'ýn PREFAB'ý. Yükseklik buna göre hesaplanacak.")]
     [SerializeField]
-    private GameObject itemPrefabForMeasuring; // YENÝ EKLENDÝ
+    private GameObject itemPrefabForMeasuring;
 
     private Stack<GameObject> stackedItems = new Stack<GameObject>();
     private float measuredItemHeight = 0.3f;
@@ -23,7 +23,6 @@ public class PlayerStack : MonoBehaviour
 
     private void Awake()
     {
-        // Yüksekliði oyun baþlar baþlamaz Prefab'den ölç
         MeasureHeight();
     }
 
@@ -54,9 +53,6 @@ public class PlayerStack : MonoBehaviour
             Destroy(item);
             return;
         }
-
-        // ARTIK ÖLÇÜM YAPMIYORUZ: if (!isHeightMeasured)...
-
 
         item.transform.SetParent(stackParent);
         float newYPosition = stackedItems.Count * measuredItemHeight;

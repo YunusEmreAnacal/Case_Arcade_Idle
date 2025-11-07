@@ -6,14 +6,14 @@ public class Spawner : MonoBehaviour
 {
     [Header("Üretim Ayarlarý")]
     [SerializeField]
-    private GameObject itemPrefab; // Üretilecek item (Kiremit prefab'ý)
+    private GameObject itemPrefab; 
 
     [SerializeField]
-    private float spawnInterval = 1.0f; // Saniyede bir item
+    private float spawnInterval = 1.0f; 
 
     [Header("Referanslar")]
     [SerializeField]
-    private Transform spawnPoint; // Item'ýn nerede doðacaðý
+    private Transform spawnPoint; 
 
     private GridDepot depot;
 
@@ -32,7 +32,7 @@ public class Spawner : MonoBehaviour
         }
         else if (itemPrefab.GetComponent<StackableItem>() == null)
         {
-            // GridDepot ve PlayerStack'in çalýþmasý için bu þart
+            
             Debug.LogError("Atanan 'itemPrefab' bir 'StackableItem' component'ine sahip deðil!", itemPrefab);
         }
     }
@@ -41,7 +41,6 @@ public class Spawner : MonoBehaviour
     {
         if (itemPrefab != null)
         {
-            // Üretim döngüsünü baþlat
             StartCoroutine(SpawnLoop());
         }
     }
@@ -62,7 +61,6 @@ public class Spawner : MonoBehaviour
 
     private void ProduceItem()
     {
-        // Prefab'ý oluþtur
         GameObject newItem = Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
 
 

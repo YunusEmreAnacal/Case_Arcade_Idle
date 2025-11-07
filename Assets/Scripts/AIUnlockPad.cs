@@ -51,9 +51,8 @@ public class AIUnlockPad : MonoBehaviour
                 // Para harcamayý dene
                 if (MoneyManager.Instance.SpendMoney(moneyPerTick))
                 {
-                    // Baþarýlý!
                     currentAmount += moneyPerTick;
-                    UpdateFillAmount(); // Görseli güncelle
+                    UpdateFillAmount();
                 }
 
                 tickTimer = 0f; // Zamanlayýcýyý sýfýrla

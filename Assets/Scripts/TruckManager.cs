@@ -5,7 +5,7 @@ public class TruckManager : MonoBehaviour
 {
     [Header("Kamyon Ayarlarý")]
     [SerializeField]
-    private GameObject truckPrefab; // GridDepot'lu kamyon prefab'ý
+    private GameObject truckPrefab; 
     [SerializeField]
     private float truckSpeed = 10f;
 
@@ -15,11 +15,11 @@ public class TruckManager : MonoBehaviour
 
     [Header("Konumlar")]
     [SerializeField]
-    private Transform spawnPoint; // Kamyonun doðacaðý yer (ekran dýþý)
+    private Transform spawnPoint; 
     [SerializeField]
-    private Transform sellPoint; // Kamyonun durup yükleneceði yer
+    private Transform sellPoint; 
     [SerializeField]
-    private Transform despawnPoint; // Kamyonun gidip kaybolacaðý yer (ekran dýþý)
+    private Transform despawnPoint; 
 
     private GridDepot currentTruckDepot;
     private bool isSelling = false;
@@ -47,9 +47,11 @@ public class TruckManager : MonoBehaviour
         int itemsSold = currentTruckDepot.CurrentItemCount;
         int moneyEarned = itemsSold * pricePerItem;
         MoneyManager.Instance.AddMoney(moneyEarned);
+        AudioManager.Instance.PlayCashSound();
 
-        // 2. Dolu kamyonu gönder (Despawn)
-        GameObject oldTruck = currentTruckDepot.transform.parent.gameObject; // GridDepot'un parent'ý kamyondur
+        // 2. Dolu kamyonu gönder 
+        GameObject oldTruck = currentTruckDepot.transform.parent.gameObject;
+        AudioManager.Instance.PlayTruckHonk();
         yield return MoveTruck(oldTruck.transform, sellPoint.position, despawnPoint.position);
 
         // 3. Eski kamyonu ve içindekileri yok et
@@ -59,7 +61,7 @@ public class TruckManager : MonoBehaviour
         }
         Destroy(oldTruck);
 
-        // 4. Yeni kamyonu getir (Spawn)
+        // 4. Yeni kamyonu getir 
         yield return SpawnNewTruck(spawnPoint.position, sellPoint.position);
 
         isSelling = false;
@@ -89,6 +91,6 @@ public class TruckManager : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-        truck.position = to; // Tam olarak hedefe oturt
+        truck.position = to; 
     }
 }

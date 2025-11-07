@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class PlayerController : MonoBehaviour
 {
@@ -45,35 +46,61 @@ public class PlayerController : MonoBehaviour
         Vector2 currentPosition = Vector2.zero;
 
 
+        // Dokunmatik giriþini (varsa) al
+        TouchControl primaryTouch = null;
+        if (Touchscreen.current != null)
+        {
+            primaryTouch = Touchscreen.current.primaryTouch;
+        }
+
 #if UNITY_EDITOR
         // ==== EDÝTÖR ÝÇÝN MOUSE (FARE) KONTROLÜ ====
         if (Mouse.current != null)
         {
-            currentPosition = Mouse.current.position.ReadValue();
+            // FARE BU FRAME MÝ TIKLADI?
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
+                currentPosition = Mouse.current.position.ReadValue();
                 touchStarted = true;
             }
+
+            // FARE BU FRAME MÝ BIRAKILDI?
             if (Mouse.current.leftButton.wasReleasedThisFrame)
             {
                 touchEnded = true;
             }
+
+            // FARE BASILI MI TUTULUYOR?
+            if (Mouse.current.leftButton.isPressed)
+            {
+                currentPosition = Mouse.current.position.ReadValue();
+            }
         }
 #else
-        if (Touchscreen.current != null && Touchscreen.current.primaryTouch.isInContact)
+        // ==== MOBÝL ÝÇÝN DOKUNMATÝK KONTROLÜ ====
+        if (primaryTouch != null)
         {
-            currentPosition = Touchscreen.current.primaryTouch.position.ReadValue();
-            if (Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
+            // PARMAK BU FRAME MÝ DOKUNDU?
+            if (primaryTouch.press.wasPressedThisFrame)
             {
+                currentPosition = primaryTouch.position.ReadValue();
                 touchStarted = true;
             }
-            if (Touchscreen.current.primaryTouch.press.wasReleasedThisFrame)
+
+            // PARMAK BU FRAME MÝ BIRAKILDI? (ASIL DÜZELTME BURADA)
+            if (primaryTouch.press.wasReleasedThisFrame)
             {
                 touchEnded = true;
             }
+
+            // PARMAK EKRANA BASILI MI TUTULUYOR?
+            if (primaryTouch.press.isPressed)
+            {
+                currentPosition = primaryTouch.position.ReadValue();
+            }
         }
 #endif
-       
+
 
         if (touchStarted)
         {

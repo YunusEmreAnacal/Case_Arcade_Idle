@@ -896,10 +896,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -4402,9 +4402,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -166.90466, y: -105.19409}
-  m_SizeDelta: {x: 247.8094, y: 68.3882}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 34.1, y: -43.849976}
+  m_SizeDelta: {x: 321.515, y: 137.361}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &1840482900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4452,8 +4452,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 85.92
-  m_fontSizeBase: 85.92
+  m_fontSize: 106
+  m_fontSizeBase: 106
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6950,7 +6950,7 @@ PrefabInstance:
     - target: {fileID: 2022096845790031888, guid: e803a1109eaefaf498683e2a5900c417,
         type: 3}
       propertyPath: processingTime
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8941452812983211860, guid: e803a1109eaefaf498683e2a5900c417,
         type: 3}

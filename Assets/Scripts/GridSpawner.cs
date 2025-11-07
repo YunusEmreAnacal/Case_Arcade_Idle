@@ -36,19 +36,13 @@ public class GridSpawner : MonoBehaviour
     {
         while (true)
         {
-            // Depo dolana kadar bekle 
             yield return new WaitWhile(() => depot.IsFull);
 
-            // Yeni item'ý oluþtur
             GameObject newItem = Instantiate(itemPrefab);
-
-
             depot.AddItem(newItem);
 
-            // Bir sonraki üretim için bekle
             yield return new WaitForSeconds(spawnInterval);
 
-            // Boþalýnca döngü baþa döner ve WaitWhile'ý geçer 
         }
     }
 

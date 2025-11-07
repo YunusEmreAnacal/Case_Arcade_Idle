@@ -1,17 +1,14 @@
 using UnityEngine;
 
-/// <summary>
-/// Karakterin (Player veya AI) item alma ve býrakma seslerini çalmasýný saðlar.
-/// </summary>
 [RequireComponent(typeof(AudioSource))]
 public class CharacterAudio : MonoBehaviour
 {
     [Header("Ses Klipleri")]
     [SerializeField]
-    private AudioClip pickupSound; // Item alma (sýrtýna koyma) sesi
+    private AudioClip pickupSound; 
 
     [SerializeField]
-    private AudioClip dropSound; // Item býrakma (depoya koyma) sesi
+    private AudioClip dropSound; 
 
     private AudioSource audioSource;
 
@@ -19,10 +16,6 @@ public class CharacterAudio : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
     }
-
-    /// <summary>
-    /// Item alma sesini çalar.
-    /// </summary>
     public void PlayPickupSound()
     {
         if (pickupSound != null)
@@ -31,9 +24,7 @@ public class CharacterAudio : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Item býrakma sesini çalar.
-    /// </summary>
+
     public void PlayDropSound()
     {
         if (dropSound != null)
